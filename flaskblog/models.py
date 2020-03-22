@@ -18,7 +18,7 @@ class User(db.Model, UserMixin):
     post = db.relationship('Post', backref = 'author', lazy = True)
     result = db.relationship('Result', backref = 'testresult', lazy = True)
     def __repr__(self):
-        return f"user('{self.ktp}', '{self.nama}', '{self.image_file}')"
+        return f"user('{self.ktp}', '{self.nama}', '{self.image_file}', '{self.email}', '{self.password}')"
 
 class Post(db.Model):
     id = db.Column(db.Integer, primary_key = True)
@@ -37,6 +37,6 @@ class Result(db.Model):
     riwayat_kontak = db.Column(db.String(3), nullable = False)
     riwayat_kontakpdp = db.Column(db.String(3), nullable = False)
     gejala_batuk = db.Column(db.String(3), nullable = False)
-    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable = False)
+    user_idi = db.Column(db.Integer, db.ForeignKey('user.id'), nullable = False)
     def __repr__(self):
         return f"Result('{self.riwayat_jalan}', '{self.riwayat_kontak}', '{self.riwayat_kontak_pdp}', '{self.gejala_batuk}')"
