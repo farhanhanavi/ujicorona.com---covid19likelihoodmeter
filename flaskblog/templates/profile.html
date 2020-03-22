@@ -1,6 +1,17 @@
 {% extends "layout.html" %}
 {% block content %}
-    {% for post in posts %}>
-    {% endfor %}
+    {% for post in posts %}  
+        <article class = "media content-section">
+            <div class = "media-body">
+                <div class = "article-metadata">
+                    <a class = "mr-2" href="#"> {{post.testresultuser.nama}}</a>
+                    <small class = "text-muted">{{ post.riwayat_jalan}}</small>
+                    <small class = "text-muted">{{ post.riwayat_kontak}}</small>
+                    <small class = "text-muted">{{ post.riwayat_kontak_pdp}}</small>
+                    <small class = "text-muted">{{ post.gejala_batuk}}</small>
+                </div>
+            </div>
+        </article>
+    {% endfor %} 
 {% endblock %}
 

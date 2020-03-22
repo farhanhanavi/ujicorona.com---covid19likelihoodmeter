@@ -1,4 +1,5 @@
 from flask_wtf import FlaskForm
+from flask_login import current_user
 from wtforms import StringField, PasswordField, SubmitField, BooleanField, DecimalField
 from wtforms.validators import DataRequired, Length, Email, EqualTo, ValidationError
 from flaskblog.models import User
@@ -26,6 +27,13 @@ class RegistrationForm (FlaskForm):
         if user:
             raise ValidationError('Email yang anda masukan telah terdaftar!')
 
+
+    def validate_username(self, username):
+        if username.data != current_user.username:
+            user = User.query.filter_by(username=username.data).first()
+            if user:
+                raise ValidationError('That username is taken. Please choose a different one.')
+
 class LoginForm (FlaskForm):
     email = StringField('email', validators = [DataRequired(message = 'Masukan email anda disini'), Email(message = 'Masukan email anda dengan benar')])
     password = PasswordField('Password', validators = [DataRequired(message = 'Masukan password anda disini')])
@@ -33,9 +41,9 @@ class LoginForm (FlaskForm):
     submit = SubmitField ('Masuk')
 
 class TestForm (FlaskForm):
-    riwayat_jalan = StringField('Dalam 14-30 hari terakhir, apakah anda bepergian ke kota/negara terjangkit COVID19 ?', validators = [DataRequired(message = 'Mohon jawab pertanyaan ini')])
-    riwayat_kontak = StringField('Dalam 14-30 hari terakhir, apakah anda melakukan kontak dengan Pasien Probabel/Konfirmasi ?', validators = [DataRequired(message = 'Mohon jawab pertanyaan ini')])
-    riwayat_kontak_pdp = StringField('Dalam 14-30 hari terakhir, apakah anda melakukan kontak dengan Pasien Dalam Pengawasan ?', validators = [DataRequired(message = 'Mohon jawab pertanyaan ini')])
-    gejala_batuk = StringField('Apakah mengalami demam, batuk ?', validators = [DataRequired(message = 'Mohon jawab pertanyaan ini')])
+    riwayat_jalan = StringField('Dalam 14-30 hari terakhir, apakah anda bepergian ke kota/negara terjangkit COVID19 (Y/N)?', validators = [DataRequired(message = 'Mohon jawab pertanyaan ini')])
+    riwayat_kontak = StringField('Dalam 14-30 hari terakhir, apakah anda melakukan kontak dengan Pasien Probabel/Konfirmasi (Y/N) ?', validators = [DataRequired(message = 'Mohon jawab pertanyaan ini')])
+    riwayat_kontak_pdp = StringField('Dalam 14-30 hari terakhir, apakah anda melakukan kontak dengan Pasien Dalam Pengawasan (Y/N)?', validators = [DataRequired(message = 'Mohon jawab pertanyaan ini')])
+    gejala_batuk = StringField('Apakah mengalami demam, batuk (Y/N)?', validators = [DataRequired(message = 'Mohon jawab pertanyaan ini')])
     submit = SubmitField ('Lihat hasil')
 

@@ -1,35 +1,18 @@
-from flask import render_template, url_for, flash, redirect
+from flask import render_template, url_for, flash, redirect, request
 from flaskblog.__innit__ import app, db, bcrypt
 from flaskblog.forms import RegistrationForm, LoginForm, TestForm
-from flaskblog.models import User, Post
-from flask_login import login_user, logout_user
-
-posts = [
-
-    {
-        'author'    : 'Corey',
-        'title'     : 'Blog post 1',
-        'content'   : '1st content',
-        'date'      : '19 April'
-    },
-    {
-        'author'    : 'Shaffer',
-        'title'     : 'Blog post 2',
-        'content'   : '1st content',
-        'date'      : '20 April'
-    }
-]
-
+from flaskblog.models import User, Result
+from flask_login import login_user, logout_user, current_user, login_required
 
 
 @app.route('/')
 @app.route('/home')
 def home():
-    return render_template('newhome.html', title = 'Home', posts = posts)
+    return render_template('newhome.html', title = 'Home')
 
 @app.route('/main')
 def main():
-    return render_template('main.html', posts = posts)
+    return render_template('main.html')
 
 
 
@@ -37,9 +20,12 @@ def main():
 def testme():
     form = TestForm()
     if form.validate_on_submit():
-        flash(f'Hasil sedang dikalkulasikan', 'success')
-        return redirect(url_for('main'))
-    return render_template('testme.html', title = 'Cek resiko infeksi online', form = form)
+        result = Result(riwayat_jalan = form.riwayat_jalan.data, riwayat_kontak = form.riwayat_kontak.data, riwayat_kontak_pdp = form.riwayat_kontak_pdp.data, gejala_batuk = form.gejala_batuk.data, testresultuser = current_user)
+        db.session.add(result)
+        db.session.commit()
+        flash(f'Input telah berhasil !', 'success')
+        return redirect(url_for('profile'))
+    return render_template('testme2.html', title = 'Cek resiko infeksi online', form = form)
 
 @app.route('/register', methods = ['GET','POST'])
 def register():
@@ -53,8 +39,10 @@ def register():
        return redirect(url_for('login'))
    return render_template('pendaftaran.html', title = 'Halaman Pendaftaran', form = form)
 
-@app.route('/profile', methods = ['GET','POST'])
+@app.route('/profile')
+@login_required
 def profile():
+   posts = Result.query.all()
    return render_template('profile.html', title = ' Profil', posts=posts)
 
 @app.route("/login", methods=['GET', 'POST'])
@@ -64,7 +52,8 @@ def login():
         user = User.query.filter_by(email = form.email.data).first()
         if user and bcrypt.check_password_hash(user.password, form.password.data):
                 login_user(user)
-                return redirect(url_for('testme'))
+                next_page = request.args.get('next')
+                return redirect(next_page) if next_page else redirect(url_for('testme'))
         else:
             flash(f'Masuk gagal, mohon cek kembali email dan password anda!','danger')
     return render_template('login.html', title='Login', form=form)
