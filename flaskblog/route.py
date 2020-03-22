@@ -20,21 +20,25 @@ posts = [
     }
 ]
 
+
+
 @app.route('/')
 @app.route('/home')
 def home():
-    return render_template('home.html', posts = posts)
+    return render_template('newhome.html', posts = posts)
 
-@app.route('/about')
-def about():
-    return render_template('about.html', title = 'about page')
+@app.route('/main')
+def main():
+    return render_template('main.html', posts = posts)
+
+
 
 @app.route('/testme', methods = ['GET','POST'])
 def testme():
     form = TestForm()
     if form.validate_on_submit():
         flash(f'Hasil sedang dikalkulasikan', 'success')
-        return redirect(url_for('home'))
+        return redirect(url_for('main'))
     return render_template('testme.html', title = 'Cek resiko infeksi online', form = form)
 
 @app.route('/register', methods = ['GET','POST'])
@@ -60,7 +64,7 @@ def login():
         user = User.query.filter_by(email = form.email.data).first()
         if user and bcrypt.check_password_hash(user.password, form.password.data):
                 login_user(user, remember=form.remember.data)
-                return redirect(url_for('home'))
+                return redirect(url_for('main'))
         else:
             flash(f'Masuk gagal, mohon cek kembali email dan password anda!','danger')
     return render_template('login.html', title='Login', form=form)

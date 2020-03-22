@@ -22,20 +22,18 @@
     <header class="site-header">
         <nav class="navbar navbar-expand-md navbar-dark bg-steel fixed-top">
           <div class="container">
-            <a class="navbar-brand mr-4" href="/">nCOV-19 </a>
+            <a class="navbar-brand mr-4" href="home">nCOV-19 </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle" aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
               <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarToggle">
               <div class="navbar-nav mr-auto">
-                <a class="nav-item nav-link" href="{{ url_for('home') }}">Home</a>
-                <a class="nav-item nav-link" href="{{ url_for('about') }}">Informasi Corona</a>
+                <a class="nav-item nav-link" href="{{ url_for('main') }}">Home</a>
                 <a class="nav-item nav-link" href="{{ url_for('testme') }}">Cek Resiko Infeksi Online</a>
               </div>
               <!-- Navbar Right Side -->
               <div class="navbar-nav">
-                <a class="nav-item nav-link" href="{{ url_for('login') }}">Masuk</a>
-                <a class="nav-item nav-link" href="{{ url_for('register') }}">Daftar Sekarang</a>
+                <a class="nav-item nav-link" href="{{ url_for('profile') }}">Profile</a>
               </div>
             </div>
           </div>
