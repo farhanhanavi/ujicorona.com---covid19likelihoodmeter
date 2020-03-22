@@ -1,6 +1,6 @@
 from flask import render_template, url_for, flash, redirect
 from flaskblog.__innit__ import app, db, bcrypt
-from flaskblog.forms import RegistrationForm, LoginForm
+from flaskblog.forms import RegistrationForm, LoginForm, TestForm
 from flaskblog.models import User, Post
 from flask_login import login_user
 
@@ -31,7 +31,11 @@ def about():
 
 @app.route('/testme', methods = ['GET','POST'])
 def testme():
-    return render_template('testme.html', title = 'Cek resiko infeksi online')
+    form = TestForm()
+    if form.validate_on_submit():
+        flash(f'Hasil sedang dikalkulasikan', 'success')
+        return redirect(url_for('home'))
+    return render_template('testme.html', title = 'Cek resiko infeksi online', form = form)
 
 @app.route('/register', methods = ['GET','POST'])
 def register():

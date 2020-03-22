@@ -32,4 +32,10 @@ class LoginForm (FlaskForm):
     remember = BooleanField('Remember me')
     submit = SubmitField ('Masuk')
 
+class TestForm (FlaskForm):
+    riwayat_jalan = StringField('Dalam 14-30 hari terakhir, apakah anda bepergian ke kota/negara terjangkit COVID19 ?', validators = [DataRequired(message = 'Mohon jawab pertanyaan ini')])
+    riwayat_kontak = StringField('Dalam 14-30 hari terakhir, apakah anda melakukan kontak dengan Pasien Probabel/Konfirmasi ?', validators = [DataRequired(message = 'Mohon jawab pertanyaan ini')])
+    riwayat_kontak_pdp = StringField('Dalam 14-30 hari terakhir, apakah anda melakukan kontak dengan Pasien Dalam Pengawasan ?', validators = [DataRequired(message = 'Mohon jawab pertanyaan ini')])
+    gejala_batuk = StringField('Apakah mengalami demam, batuk ?', validators = [DataRequired(message = 'Mohon jawab pertanyaan ini')])
+    submit = SubmitField ('Lihat hasil')
 
