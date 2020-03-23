@@ -1,0 +1,94 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class = "content-section">
+    <form method = "POST" action = "">
+        {{ form.hidden_tag()}}
+        <fieldset class = "form-group">
+            <legend class = "border-bottom mb-4">Riwayat gejala</legend>
+           
+
+            <div class = "form-group">
+                {{ form.demam.label(class="form-control-label")}}
+                {% if form.demam.errors %}
+                    {{ form.demam(class="form-control form-control-lg is-invalid")}}   
+                    <div class = "invalid-feedback">
+                        {% for error in form.demam.errors %}
+                            <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                     {{ form.demam(class="form-control form-control-lg")}}
+                {% endif %}
+            </div>
+
+
+            <div class = "form-group">
+                {{ form.batuk.label(class="form-control-label")}}
+                {% if form.batuk.errors %}
+                    {{ form.batuk(class="form-control form-control-lg is-invalid")}}   
+                    <div class = "invalid-feedback">
+                        {% for error in form.batuk.errors %}
+                            <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                     {{ form.batuk(class="form-control form-control-lg")}}
+                {% endif %}
+            </div>
+           
+            <div class = "form-group">
+                {{ form.pilek.label(class="form-control-label")}}
+                {% if form.pilek.errors %}
+                    {{ form.pilek(class="form-control form-control-lg is-invalid")}}   
+                    <div class = "invalid-feedback">
+                        {% for error in form.pilek.errors %}
+                            <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                     {{ form.pilek(class="form-control form-control-lg")}}
+                {% endif %}
+            </div>
+
+            <div class = "form-group">
+                {{ form.nyeri_tenggorokan.label(class="form-control-label")}}
+                {% if form.nyeri_tenggorokan.errors %}
+                    {{ form.nyeri_tenggorokan(class="form-control form-control-lg is-invalid")}}   
+                    <div class = "invalid-feedback">
+                        {% for error in form.nyeri_tenggorokan.errors %}
+                            <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                     {{ form.nyeri_tenggorokan(class="form-control form-control-lg")}}
+                {% endif %}
+            </div>
+
+            
+            <div class = "form-group">
+                {{ form.sesak.label(class="form-control-label")}}
+                {% if form.sesak.errors %}
+                    {{ form.sesak(class="form-control form-control-lg is-invalid")}}   
+                    <div class = "invalid-feedback">
+                        {% for error in form.sesak.errors %}
+                            <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                     {{ form.sesak(class="form-control form-control-lg")}}
+                {% endif %}
+            </div>
+
+
+        </fieldset>
+        <div class = "form-group">
+            {{form.submit_gejala(class = "btn btn-outline-info")}}
+        </div>
+        
+    </form>
+   
+</div>
+    
+{% endblock %}
+
+

@@ -8,7 +8,9 @@ from flaskblog.models import User
 
 class RegistrationForm (FlaskForm):
     nama = StringField('Nama', validators = [DataRequired(message = 'Masukan nama anda disini')])
-    ktp = StringField('No. KTP', validators = [DataRequired(message = 'Masukan ktp anda disini'), Length(min = 16, max = 16, message = 'Masukan nomor ktp anda dengan benar') ])
+    ktp = StringField('Nomor KTP', validators = [DataRequired(message = 'Masukan ktp anda disini'), Length(min = 16, max = 16, message = 'Masukan nomor ktp anda dengan benar') ])
+    nomor_hp = StringField('Nomor Handphone', validators = [DataRequired(message = 'Masukan nomor handphone anda disini')])
+    umur = StringField('Umur', validators = [DataRequired(message = 'Masukan umur anda disini'), Length(min = 0, max = 2, message = 'Masukan nomor umur anda dengan benar') ])
     jenis_kelamin = StringField('Jenis Kelamin (P/W)', validators=[DataRequired(message = 'Masukan jenis kelamin anda disini'), Length(min = 1, max = 1, message = 'Masukan P untuk pria dan W untuk wanita')])
     alamat = StringField('Alamat tempat tinggal', validators=[DataRequired(message = 'Masukan alamat anda disini')])
     email = StringField('email', validators = [DataRequired(message = 'Masukan email anda disini'), Email(message = 'Masukan email anda dengan benar')])
@@ -40,10 +42,18 @@ class LoginForm (FlaskForm):
     remember = BooleanField('Remember me')
     submit = SubmitField ('Masuk')
 
-class TestForm (FlaskForm):
+class ContactHistoryForm (FlaskForm):
     riwayat_jalan = StringField('Dalam 14-30 hari terakhir, apakah anda bepergian ke kota/negara terjangkit COVID19 (Y/N)?', validators = [DataRequired(message = 'Mohon jawab pertanyaan ini')])
     riwayat_kontak = StringField('Dalam 14-30 hari terakhir, apakah anda melakukan kontak dengan Pasien Probabel/Konfirmasi (Y/N) ?', validators = [DataRequired(message = 'Mohon jawab pertanyaan ini')])
     riwayat_kontak_pdp = StringField('Dalam 14-30 hari terakhir, apakah anda melakukan kontak dengan Pasien Dalam Pengawasan (Y/N)?', validators = [DataRequired(message = 'Mohon jawab pertanyaan ini')])
-    gejala_batuk = StringField('Apakah mengalami demam, batuk (Y/N)?', validators = [DataRequired(message = 'Mohon jawab pertanyaan ini')])
-    submit = SubmitField ('Lihat hasil')
+    submit_test = SubmitField ('Lihat hasil')
+
+
+class GejalaForm (FlaskForm):
+    demam = StringField('Apakah anda mengalami demam (Y/N)?', validators = [DataRequired(message = 'Mohon jawab pertanyaan ini')])
+    batuk = StringField('Apakah anda mengalami batuk (Y/N) ?', validators = [DataRequired(message = 'Mohon jawab pertanyaan ini')])
+    pilek = StringField('Apakah anda mengalami pilek (Y/N)', validators = [DataRequired(message = 'Mohon jawab pertanyaan ini')])
+    nyeri_tenggorokan = StringField('Apakah mengalami nyeri tenggorokan (Y/N)?', validators = [DataRequired(message = 'Mohon jawab pertanyaan ini')])
+    sesak = StringField('Apakah mengalami sesak nafas (Y/N)?', validators = [DataRequired(message = 'Mohon jawab pertanyaan ini')])
+    submit_gejala = SubmitField ('Lihat hasil')
 

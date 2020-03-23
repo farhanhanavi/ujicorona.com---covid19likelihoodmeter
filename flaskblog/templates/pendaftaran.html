@@ -4,6 +4,7 @@
         <form method = "POST" action = "">
             {{ form.hidden_tag()}}
             <fieldset class = "form-group">
+
                 <legend class = "border-bottom mb-4">Form Pendaftaran</legend>
                 <div class = "form-group">
                     {{ form.nama.label(class="form-control-label")}}
@@ -31,7 +32,20 @@
                     {% else %}
                          {{ form.ktp(class="form-control form-control-lg")}}   
                     {% endif %} 
+                </div>
 
+                <div class = "form-group">
+                    {{ form.umur.label(class="form-control-label")}}
+                    {% if form.umur.errors %}
+                        {{ form.umur(class="form-control form-control-lg is-invalid")}}   
+                        <div class = "invalid-feedback">
+                            {% for error in form.umur.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                         {{ form.umur(class="form-control form-control-lg")}}
+                    {% endif %}
                 </div>
 
                 <div class = "form-group">
@@ -67,6 +81,21 @@
                     {% endif %}
                 </div>
 
+                <div class = "form-group">
+                    {{ form.nomor_hp.label(class="form-control-label")}}
+                    {% if form.nomor_hp.errors %}
+                        {{ form.nomor_hp(class="form-control form-control-lg is-invalid")}}   
+                        <div class = "invalid-feedback">
+                            {% for error in form.nomor_hp.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                         {{ form.nomor_hp(class="form-control form-control-lg")}}
+                    {% endif %}
+                </div>
+
+                
                 <div class = "form-group">
                     {{ form.password.label(class="form-control-label")}}
                     {% if form.password.errors %}
