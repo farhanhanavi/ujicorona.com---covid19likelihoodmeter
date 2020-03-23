@@ -1,2 +1,2 @@
-# likelyhoodmeter
-Solver Society - Covid19 likelyhoodmeter
+# likelihoodmeter
+Solver Society - Covid19 likelihoodmeter
