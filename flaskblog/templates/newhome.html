@@ -30,8 +30,8 @@
   <header class="masthead">
     <div class="container d-flex h-100 align-items-center">
       <div class="mx-auto text-center">
-        <h1 class="mx-auto my-0 text-uppercase">COVID-19 LIKELIHOOD METER</h1>
-        <h2 class="text-white-50 mx-auto mt-2 mb-5">Cek kesehatan anda, pastikan keraguan anda !</h2>
+        <h1 class="mx-auto my-0 text-uppercase" style="color:white;">COVID-19 LIKELIHOOD METER</h1>
+        <h2 class="mx-auto mt-2 mb-5" style="color:white;">Cek kesehatan anda, pastikan keraguan anda !</h2>
         {% if current_user.is_authenticated %}
         <a href="{{ url_for('main') }}" class="btn btn-primary js-scroll-trigger">Cek sekarang</a>
         <a href="{{ url_for('register') }}" class="btn btn-primary js-scroll-trigger">Daftar</a>
