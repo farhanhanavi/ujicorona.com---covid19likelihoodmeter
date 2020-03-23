@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50505
 File Encoding         : 65001
 
-Date: 2020-03-23 10:48:00
+Date: 2020-03-23 16:11:59
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -21,7 +21,8 @@ SET FOREIGN_KEY_CHECKS=0;
 DROP TABLE IF EXISTS `responses`;
 CREATE TABLE `responses` (
   `id` int(11) NOT NULL,
-  `question_id` int(11) NOT NULL,
+  `symptom_id` int(11) NOT NULL,
+  `status` tinyint(1) DEFAULT NULL,
   `created` datetime DEFAULT NULL,
   `modified` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -29,8 +30,10 @@ CREATE TABLE `responses` (
 -- ----------------------------
 -- Records of responses
 -- ----------------------------
-INSERT INTO `responses` VALUES ('1', '3', '2020-03-22 18:56:22', null);
-INSERT INTO `responses` VALUES ('1', '4', '2020-03-22 18:56:22', null);
+INSERT INTO `responses` VALUES ('1', '1', '1', '2020-03-22 18:56:22', null);
+INSERT INTO `responses` VALUES ('1', '2', '0', '2020-03-22 18:56:22', null);
+INSERT INTO `responses` VALUES ('1', '3', '0', '2020-03-22 18:56:22', null);
+INSERT INTO `responses` VALUES ('1', '4', '1', '2020-03-22 18:56:22', null);
 
 -- ----------------------------
 -- Table structure for `symptoms`
