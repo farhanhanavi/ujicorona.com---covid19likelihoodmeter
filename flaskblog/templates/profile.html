@@ -3,12 +3,123 @@
     {% for post in posts %}  
         <article class = "media content-section">
             <div class = "media-body">
-                <div class = "article-metadata">
-                    <a class = "mr-2" href="#"> {{post.testcontactuser.nama}}</a>
-                    <small class = "text-muted">{{ post.riwayat_jalan}}</small>
-                    <small class = "text-muted">{{ post.riwayat_kontak}}</small>
-                    <small class = "text-muted">{{ post.riwayat_kontak_pdp}}</small>>
-                </div>
+
+
+                
+
+
+
+
+            {% if post.categories == "Self Isolation" %}
+            <div class = "article-metadata"><h2>Hasil dan Rekomendasi</h2></div>
+            <br>
+            <h3>Isolasi Mandiri</h3>
+            <br>
+            <p align="justify">Berdasarkan hasil kuesioner, <b>tidak ditemukan gejala COVID19.</b> 
+                <br><br> Akan tetapi, Anda perlu melakukan karantina diri selama 14 hari terhitung setelah kontak/perjalanan. 
+                Lakukan pemantauan selama karantina.
+                <br>
+                <ul><li align ="justify" class = "tab">Apabila selama 14 hari karantina Anda mengalami gejala seperti demam, pilek, batuk, atau sesak napas, segera periksakan diri Anda ke RS rujukan COVID19 terdekat.</li>
+                <br><li align ="justify" class = "tab">Apabila selama 14 hari karantina Anda tidak mengalami gejala tersebut, Anda tidak perlu memeriksakan diri ke
+                RS. Selalu jaga kesehatan dan kondisi tubuh.</li><ul>
+            </p>
+            {% endif %}
+
+
+
+
+            {% if post.categories == "KERT" %}
+            <div class = "article-metadata"><h2>Hasil dan Rekomendasi</h2></div>
+            <br>
+            <h3>KERT (Kontak Erat Resiko Tinggi)</h3>
+            <br>
+            <p align="justify">Berdasarkan hasil kuesioner, Anda termasuk dalam kategori Kontak Erat Risiko Tinggi (KERT).
+                KERT adalah seseorang yang melakukan kontak fisik atau berada dalam ruangan atau berkunjung (dalam radius 1
+                meter dengan kasus <b></b>probabel atau konfirmasi</b>) dalam 2 hari sebelum kasus timbul gejala dan hingga 14
+                hari setelah kasus timbul gejala. Anda perlu melakukan observasi/karantina mandiri di rumah selama 14 hari.
+                <br><br>Anda <b>perlu</b> melakukan pengambilan spesimen pada hari ke-1 dan ke-14 setelah kontak. Bila hasil
+                pemeriksaan laboratorium positif, maka Anda perlu dirujuk ke RS rujukan COVID19.
+                <ul><li align ="justify" class = "tab">Apabila selama 14 hari karantina Anda mengalami gejala seperti demam, pilek, batuk, atau sesak
+                napas, segera periksakan diri Anda ke RS rujukan COVID19 terdekat.</li>
+                <br><li align ="justify" class = "tab">Apabila selama 14 hari karantina Anda tidak mengalami gejala tersebut, Anda tidak perlu memeriksakan
+                diri ke RS. Selalu jaga kesehatan dan kondisi tubuh.</li></ul>
+            {% endif %}
+
+
+            {% if post.categories == "KERR" %}
+            <div class = "article-metadata"><h2>Hasil dan Rekomendasi</h2></div>
+            <br>
+            <h3>KERR (Kontak Erat Resiko Rendah)</h3>
+            <br>
+            <p align="justify">Berdasarkan hasil kuesioner, Anda termasuk dalam kategori Kontak Erat Resiko Rendah (KERR). 
+                <br><br>KERR adalah seseorang yang melakukan kontak fisik atau berada dalam ruangan atau berkunjung (dalam radius 1 meter dengan kasus pasien dalam pengawasan) dalam 2 hari sebelum kasus timbul gejala dan hingga 14 hari setelah kasus timbul gejala. 
+                <br><br>Anda <b>perlu</b> melakukan observasi/karantina mandiri di rumah selama 14 hari. Anda tidak perlu melakukan pengambilan spesimen. 
+                <br>
+                <ul><li align ="justify" class = "tab">Apabila selama 14 hari karantina Anda mengalami gejala seperti demam, pilek, batuk, atau sesak napas, segera periksakan diri Anda ke RS rujukan COVID19 terdekat.</li>
+                <br><li align ="justify" class = "tab">Apabila selama 14 hari karantina Anda tidak mengalami gejala tersebut, Anda tidak perlu memeriksakan diri ke RS. Selalu jaga kesehatan dan kondisi tubuh.</li>
+                <br><li align ="justify" class = "tab">Apabila pasien dalam pengawasan dinyatakan negatif COVID-19 maka karantina dihentikan.</li>
+                <br><li align ="justify" class = "tab">Apabila pasien dalam pengawasan dinyatakan probabel/positif COVID- 19 (konfirmasi) maka Anda masuk dalam kategori KERT (Kontak Erat Risiko Tinggi).</li></ul>
+                
+            {% endif %}
+
+
+
+
+            {% if post.categories == "ODP" %}
+            <div class = "article-metadata"><h2>Hasil dan Rekomendasi</h2></div>
+            <br>
+            <h3>ODP (Orang Dalam Pengawasan)</h3>
+            <br>
+            <p align="justify">Berdasarkan riwayat kontak/perjalanan dan gejala yang dilaporkan, Anda termasuk dalam kategori Orang Dalam Pemantauan (ODP). 
+                <br></br>
+                Anda <b>wajib</b> memeriksakan diri ke rumah sakit terdekat dan istirahat yang cukup. Anda <b>wajib</b> melakukan isolasi mandiri di rumah selama 14 hari dan melakukan evaluasi apabila terdapat perburukan gejala selama masa isolasi.
+                <br>
+                <ul><li align ="justify" class = "tab">Apabila terjadi perburukan kondisi tubuh, segera periksakan diri ke dokter terdekat dengan Anda.</li></ul>
+            {% endif %}
+
+
+            {% if post.categories == "PDP" %}
+            <div class = "article-metadata"><h2>Hasil dan Rekomendasi</h2></div>
+            <br>
+            <h3>PDP (Pasien Dalam Pengawasan)</h3>
+            <br>
+            <p align="justify">Berdasarkan riwayat kontak/perjalanan dan gejala yang dilaporkan, Anda termasuk dalam kategori Orang Dalam Pemantauan (ODP). 
+                <br></br>
+                Anda <b>wajib</b> NOT DEFINED
+                <br>
+                <ul><li align ="justify" class = "tab">Apabila NOT DEFINED.</li></ul>
+            {% endif %}
+
+
+            {% if post.categories == "0"%}
+            <div class = "article-metadata"><h2>Hasil dan Rekomendasi</h2></div>
+            <br>
+            <h3>Sehat</h3>
+            <br>
+            <p align="justify">Berdasarkan riwayat kontak/perjalanan dan gejala yang dilaporkan, Anda termasuk dalam kategori <b>sehat</b>
+                <br></br>
+                Anda <b>wajib</b> NOT DEFINED
+                <br>
+                <ul><li align ="justify" class = "tab">Apabila NOT DEFINED.</li></ul>
+            {% endif %}
+
+
+            {% if post.categories == "sehat"%}
+            <div class = "article-metadata"><h2>Hasil dan Rekomendasi</h2></div>
+            <br>
+            <h3>Sehat</h3>
+            <br>
+            <p align="justify">Berdasarkan riwayat kontak/perjalanan dan gejala yang dilaporkan, Anda termasuk dalam kategori <b>sehat</b>
+                <br></br>
+                Anda <b>wajib</b> NOT DEFINED
+                <br>
+                <ul><li align ="justify" class = "tab">Apabila NOT DEFINED.</li></ul>
+            {% endif %}
+
+
+
+
+
             </div>
         </article>
     {% endfor %}   
