@@ -17,9 +17,10 @@ login_manager.login_view = 'login'
 login_manager.login_message_category = 'info'
 
 # #create all db tables
-# @app.before_first_request
-# def create_tables():
-#     from flaskblog.models import User, ContactHistory, Symptoms
-#     db.create_all()
+@app.before_first_request
+def create_tables():
+    from flaskblog.models import User, ContactHistory, Symptoms, Categories
+    db.create_all()
+    
 
 from flaskblog import route
