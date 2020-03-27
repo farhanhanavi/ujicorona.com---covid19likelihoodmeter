@@ -1,0 +1,71 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="content-section">
+    <form method="POST" action="">
+        {{ form.hidden_tag()}}
+        <fieldset class="form-group">
+            <legend class="border-bottom mb-4">Riwayat Berpergian</legend>
+
+
+            <div class="form-group">
+                {{ form.riwayat_jalan.label(class="form-control-label")}}
+                <br><input type="radio" name="options0" id="option01" value="1"> Ya </input>
+                <input type="radio" name="options0" id="option00" value="0"> Tidak </input>
+                <input type="radio" name="options0" id="option02" value="2"> Tidak Tahu </input>
+                <!-- {% if form.riwayat_jalan.errors %}
+                    {{ form.riwayat_jalan(class="form-control form-control-lg is-invalid")}}   
+                    <div class = "invalid-feedback">
+                        {% for error in form.riwayat_jalan.errors %}
+                            <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                     {{ form.riwayat_jalan(class="form-control form-control-lg")}}
+                {% endif %} -->
+            </div>
+
+
+            <div class="form-group">
+                {{ form.riwayat_kontak.label(class="form-control-label")}}
+                <br><input type="radio" name="options1" id="option11" value="1"> Ya </input>
+                <input type="radio" name="options1" id="option10" value="0"> Tidak </input>
+                <input type="radio" name="options1" id="option12" value="2"> Tidak Tahu </input>
+                <!-- {% if form.riwayat_kontak.errors %}
+                {{ form.riwayat_kontak(class="form-control form-control-lg is-invalid")}}
+                <div class="invalid-feedback">
+                    {% for error in form.riwayat_kontak.errors %}
+                    <span>{{ error }}</span>
+                    {% endfor %}
+                </div>
+                {% else %}
+                {{ form.riwayat_kontak(class="form-control form-control-lg")}}
+                {% endif %} -->
+            </div>
+
+            <div class="form-group">
+                {{ form.riwayat_kontak_pdp.label(class="form-control-label")}}
+                <br><input type="radio" name="options2" id="option21" value="1"> Ya </input>
+                <input type="radio" name="options2" id="option20" value="0"> Tidak </input>
+                <input type="radio" name="options2" id="option22" value="2"> Tidak Tahu </input>
+                <!-- {% if form.riwayat_kontak_pdp.errors %}
+                {{ form.riwayat_kontak_pdp(class="form-control form-control-lg is-invalid")}}
+                <div class="invalid-feedback">
+                    {% for error in form.riwayat_kontak_pdp.errors %}
+                    <span>{{ error }}</span>
+                    {% endfor %}
+                </div>
+                {% else %}
+                {{ form.riwayat_kontak_pdp(class="form-control form-control-lg")}}
+                {% endif %} -->
+            </div>
+
+        </fieldset>
+        <div class="form-group">
+            {{form.submit_test(class = "btn btn-outline-info")}}
+        </div>
+
+    </form>
+
+</div>
+
+{% endblock %}
