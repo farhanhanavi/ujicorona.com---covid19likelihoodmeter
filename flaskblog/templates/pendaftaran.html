@@ -1,7 +1,7 @@
 {% extends "layout.html" %}
 {% block content %}
     <div class = "content-section">
-        <form method = "POST" action = "">
+        <form method = "POST" action = "" enctype="multipart/form-data">
             {{ form.hidden_tag()}}
             <fieldset class = "form-group">
 
@@ -20,6 +20,9 @@
                     {% endif %} 
                 </div>
 
+
+
+
                 <div class = "form-group">
                     {{ form.ktp.label(class="form-control-label")}}
                     {% if form.ktp.errors %}
@@ -27,12 +30,14 @@
                     <div class = "invalid-feedback">
                         {% for error in form.ktp.errors %}
                                 <span>{{ error }}</span>
-                            {% endfor %}
+                        {% endfor %}
                     </div>
                     {% else %}
                          {{ form.ktp(class="form-control form-control-lg")}}   
                     {% endif %} 
                 </div>
+
+        
 
                 <div class = "form-group">
                     {{ form.umur.label(class="form-control-label")}}
@@ -48,24 +53,30 @@
                     {% endif %}
                 </div>
 
+
+
+            <form name="myForm" action="" method="post">
                 <div class = "form-group">
-                    {{ form.jenis_kelamin.label(class="form-control-label")}}
-                    {% if form.jenis_kelamin.errors %}
-                    {{ form.jenis_kelamin(class="form-control form-control-lg is-invalid")}}  
-                    <div class = "invalid-feedback">
-                        {% for error in form.jenis_kelamin.errors %}
-                                <span>{{ error }}</span>
-                            {% endfor %}
-                    </div>
-                    {% else %}
-                         {{ form.jenis_kelamin(class="form-control form-control-lg")}}   
-                    {% endif %}   
+                <label> Jenis Kelamin </label>
+                    <br>
+                    <input type="radio" id="jeniskelamin1" name="jeniskelamin" value="pria">
+                    <label for="jeniskelamin1">Pria</label>
+                    <br>
+                    <input type="radio" id="jeniskelamin2" name="jeniskelamin" value="wanita">
+                    <label for="jeniskelamin2">Wanita</label>
+        
                 </div>
+            </form>
+
 
                 <div class = "form-group">
                     {{ form.alamat.label(class="form-control-label")}}
                     {{ form.alamat(class="form-control form-control-lg")}}   
                 </div>
+
+
+
+
 
                 <div class = "form-group">
                     {{ form.email.label(class="form-control-label")}}
@@ -81,6 +92,11 @@
                     {% endif %}
                 </div>
 
+
+
+
+
+
                 <div class = "form-group">
                     {{ form.nomor_hp.label(class="form-control-label")}}
                     {% if form.nomor_hp.errors %}
@@ -94,6 +110,8 @@
                          {{ form.nomor_hp(class="form-control form-control-lg")}}
                     {% endif %}
                 </div>
+
+                
 
                 
                 <div class = "form-group">
@@ -123,12 +141,30 @@
                      {{ form.confirmpassword(class="form-control form-control-lg")}}
                 {% endif %}
                 </div>
+
+
+
+                <form name="code" action="" method="post">
+                    <div class = "form-group">
+                    <label align ="justify" class = "tab"> Dengan ini saya menyatakan bahwa data yang diisi adalah benar dan dapat dipertanggungjawabkan sesuai dengan yang saya miliki atau alami. Saya juga menyatakan bahwa saya belum pernah mendapatkan tes untuk COVID-19 sebelumnya. </label>
+                        <br>
+                        <input type="checkbox" id="contactChoice1" required name="codeofconduct" value="yes">
+                        <label for="contactChoice1">Saya setuju</label>
+            
+                    </div>
+                </form>
+    
+
+
+
+
+
+
                  <div class = "form-group">
                 {{form.submit(class = "btn btn-outline-info")}}
             </div>
-
-
           </fieldset>    
+
         </form>
         <div class = "border-bottom mb-4 pt-10">
             <small class = "text-muted">

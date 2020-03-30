@@ -12,7 +12,7 @@ class User(db.Model, UserMixin):
     nama = db.Column(db.String(30), nullable = False)
     nomor_hp = db.Column(db.String(15), nullable = False)
     umur = db.Column(db.String(2), nullable = False)
-    jenis_kelamin = db.Column(db.String(1), nullable = False)
+    jenis_kelamin = db.Column(db.String(10), nullable = False)
     alamat = db.Column(db.String(50), nullable = False)
     email = db.Column(db.String(120), unique = True, nullable = False)
     password = db.Column(db.String(100), nullable = False)
@@ -28,9 +28,9 @@ class User(db.Model, UserMixin):
 class ContactHistory(db.Model):
     contact_id = db.Column(db.Integer, nullable= False, primary_key = True) 
     id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable = False)
-    riwayat_jalan = db.Column(db.String(3), nullable = False)
-    riwayat_kontak = db.Column(db.String(3), nullable = False)
-    riwayat_kontak_pdp = db.Column(db.String(3), nullable = False)
+    riwayat_jalan = db.Column(db.String(10), nullable = False)
+    riwayat_kontak = db.Column(db.String(10), nullable = False)
+    riwayat_kontak_pdp = db.Column(db.String(10), nullable = False)
     contactresult = db.Column(db.Integer, nullable = False, default = '0')
 
     
@@ -40,11 +40,11 @@ class ContactHistory(db.Model):
 class Symptoms(db.Model):
     symptomsid = db.Column(db.Integer, nullable= False, primary_key = True) 
     id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable = False)   
-    demam = db.Column(db.String(3), nullable = False)
-    batuk = db.Column(db.String(3), nullable = False)
-    pilek = db.Column(db.String(3), nullable = False)
-    nyeri_tenggorokan = db.Column(db.String(3), nullable = False)
-    sesak = db.Column(db.String(3), nullable = False)
+    demam = db.Column(db.String(10), nullable = False)
+    batuk = db.Column(db.String(10), nullable = False)
+    pilek = db.Column(db.String(10), nullable = False)
+    nyeri_tenggorokan = db.Column(db.String(10), nullable = False)
+    sesak = db.Column(db.String(10), nullable = False)
     symptomsresult = db.Column(db.Integer)
     
 				

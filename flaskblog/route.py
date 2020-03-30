@@ -126,12 +126,12 @@ def riwayatgejala():
 def register():
    form = RegistrationForm()
    if form.validate_on_submit(): 
-       hashed_password = bcrypt.generate_password_hash(form.password.data).decode('utf-8')
-       user = User(ktp = form.ktp.data, nama = form.nama.data, jenis_kelamin = form.jenis_kelamin.data, alamat = form.alamat.data, email = form.email.data, nomor_hp = form.nomor_hp.data, umur = form.umur.data, password = hashed_password)
-       db.session.add(user)
-       db.session.commit()
-       flash(f'Akun berhasil terdaftar untuk {form.nama.data}', 'success')
-       return redirect(url_for('login'))
+        hashed_password = bcrypt.generate_password_hash(form.password.data).decode('utf-8')
+        user = User(ktp = form.ktp.data, nama = form.nama.data, jenis_kelamin = request.form['jeniskelamin'], alamat = form.alamat.data, email = form.email.data, nomor_hp = form.nomor_hp.data, umur = form.umur.data, password = hashed_password)
+        db.session.add(user)
+        db.session.commit()
+        flash(f'Akun berhasil terdaftar untuk {form.nama.data}', 'success')
+        return redirect(url_for('login'))
    return render_template('pendaftaran.html', title = 'Halaman Pendaftaran', form = form)
 
 
@@ -159,11 +159,12 @@ def logout():
 @login_required
 def profile():
    
-
-   
-
-
-   
-   
    post = Categories.query.filter_by(id = current_user.id)
    return render_template('profile.html', title = ' Profil', posts=post)
+
+
+@app.route('/typeform')
+@login_required
+def typeform():
+   
+   return render_template('typeform.html', title = ' Profil')

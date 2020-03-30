@@ -1,4 +1,5 @@
 from flask_wtf import FlaskForm
+from flask_wtf.file import FileField, FileAllowed
 from flask_login import current_user
 from wtforms import StringField, PasswordField, SubmitField, BooleanField, DecimalField
 from wtforms.validators import DataRequired, Length, Email, EqualTo, ValidationError, Regexp
@@ -8,15 +9,11 @@ from flaskblog.models import User
 
 class RegistrationForm (FlaskForm):
     nama = StringField('Nama', validators = [DataRequired(message = 'Masukan nama anda disini')])
-    ktp = StringField('Nomor KTP', validators = [DataRequired(message = 'Masukan ktp anda disini'), 
-                                                              Length(min = 16, max = 16, message = 'Masukan nomor ktp anda dengan benar'),
-                                                              Regexp('^[0-9]+$', message="Nomor KTP harus angka") ])
-    nomor_hp = StringField('Nomor Handphone', validators = [DataRequired(message = 'Masukan nomor handphone anda disini'),
-                                                            Regexp('^[0-9]+$', message="Nomor HP harus angka")])
-    umur = StringField('Umur', validators = [DataRequired(message = 'Masukan umur anda disini'), 
-                                             Regexp('^[0-9]+$', message="Umur harus angka"),
-                                             Length(min = 0, max = 2, message = 'Masukan nomor umur anda dengan benar') ])
-    jenis_kelamin = StringField('Jenis Kelamin (P/W)', validators=[DataRequired(message = 'Masukan jenis kelamin anda disini'), Length(min = 1, max = 1, message = 'Masukan P untuk pria dan W untuk wanita')])
+    ktp = StringField('Nomor KTP', validators = [DataRequired(message = 'Masukan ktp anda disini'), Length(min = 16, max = 16, message = 'Masukan nomor ktp anda dengan benar'), Regexp('^[0-9]+$', message="Nomor KTP harus angka") ])
+  
+    nomor_hp = StringField('Nomor Handphone', validators = [DataRequired(message = 'Masukan nomor handphone anda disini'), Regexp('^[0-9]+$', message="Nomor HP harus angka")])
+    umur = StringField('Umur', validators = [DataRequired(message = 'Masukan umur anda disini'), Regexp('^[0-9]+$', message="Umur harus angka"),Length(min = 0, max = 2, message = 'Masukan nomor umur anda dengan benar') ])
+    
     alamat = StringField('Alamat tempat tinggal', validators=[DataRequired(message = 'Masukan alamat anda disini')])
     email = StringField('email', validators = [DataRequired(message = 'Masukan email anda disini'), Email(message = 'Masukan email anda dengan benar')])
     password = PasswordField('Password', validators = [DataRequired(message = 'Masukan password anda disini')])
