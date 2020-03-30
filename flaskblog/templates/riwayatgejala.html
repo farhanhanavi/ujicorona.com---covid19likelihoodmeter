@@ -4,86 +4,64 @@
     <form method = "POST" action = "">
         {{ form.hidden_tag()}}
         <fieldset class = "form-group">
-            <legend class = "border-bottom mb-4">Riwayat gejala</legend>
+            <legend class = "border-bottom mb-4">Riwayat bepergian</legend>
            
 
-            <div class = "form-group">
-                {{ form.demam.label(class="form-control-label")}}
-                {% if form.demam.errors %}
-                    {{ form.demam(class="form-control form-control-lg is-invalid")}}   
-                    <div class = "invalid-feedback">
-                        {% for error in form.demam.errors %}
-                            <span>{{ error }}</span>
-                        {% endfor %}
-                    </div>
-                {% else %}
-                     {{ form.demam(class="form-control form-control-lg")}}
-                {% endif %}
-            </div>
+            <form name="pasienform" action="" method="post">
+                <div class = "form-group">
+                    <label> Apakah anda mengalami demam? </label>
+                    <br>
+                    <input type="radio" id="demam1" name="demam" value="y">
+                    <label for="demam1">Ya</label>
+                    <br>
+                    <input type="radio" id="demam2" name="demam" value="n">
+                    <label for="demam2">Tidak</label>
+        
+                    <br>
+                    <label> Apakah anda mengalami batuk? </label>
+                    <br>
+                    <input type="radio" id="batuk1" name="batuk" value="y">
+                    <label for="batuk1">Ya</label>
+                    <br>
+                    <input type="radio" id="batuk2" name="batuk" value="n">
+                    <label for="batuk2">Tidak</label>
+                    
+                    <br>
+                    <label> Apakah anda mengalami pilek? </label>
+                    <br>
+                    <input type="radio" id="pilek1" name="pilek" value="y">
+                    <label for="pilek1">Ya</label>
+                    <br>
+                    <input type="radio" id="pilek2" name="pilek" value="n">
+                    <label for="pilek2">Tidak</label>
 
+                    <br>
+                    <label> Apakah mengalami nyeri tenggorokan? </label>
+                    <br>
+                    <input type="radio" id="nyeri_tenggorokan1" name="nyeri_tenggorokan" value="y">
+                    <label for="nyeri_tenggorokan1">Ya</label>
+                    <br>
+                    <input type="radio" id="nyeri_tenggorokan2" name="nyeri_tenggorokan" value="n">
+                    <label for="nyeri_tenggorokan2">Tidak</label>
+
+                    <br>
+                    <label> Apakah mengalami sesak nafas? </label>
+                    <br>
+                    <input type="radio" id="sesak_nafas1" name="sesak_nafas" value="y">
+                    <label for="sesak_nafas1">Ya</label>
+                    <br>
+                    <input type="radio" id="sesak_nafas2" name="sesak_nafas" value="n">
+                    <label for="sesak_nafas2">Tidak</label>
+        
+                </div>
+            </form>
 
             <div class = "form-group">
-                {{ form.batuk.label(class="form-control-label")}}
-                {% if form.batuk.errors %}
-                    {{ form.batuk(class="form-control form-control-lg is-invalid")}}   
-                    <div class = "invalid-feedback">
-                        {% for error in form.batuk.errors %}
-                            <span>{{ error }}</span>
-                        {% endfor %}
-                    </div>
-                {% else %}
-                     {{ form.batuk(class="form-control form-control-lg")}}
-                {% endif %}
+                {{form.submit_gejala(class = "btn btn-outline-info")}}
             </div>
-           
-            <div class = "form-group">
-                {{ form.pilek.label(class="form-control-label")}}
-                {% if form.pilek.errors %}
-                    {{ form.pilek(class="form-control form-control-lg is-invalid")}}   
-                    <div class = "invalid-feedback">
-                        {% for error in form.pilek.errors %}
-                            <span>{{ error }}</span>
-                        {% endfor %}
-                    </div>
-                {% else %}
-                     {{ form.pilek(class="form-control form-control-lg")}}
-                {% endif %}
-            </div>
-
-            <div class = "form-group">
-                {{ form.nyeri_tenggorokan.label(class="form-control-label")}}
-                {% if form.nyeri_tenggorokan.errors %}
-                    {{ form.nyeri_tenggorokan(class="form-control form-control-lg is-invalid")}}   
-                    <div class = "invalid-feedback">
-                        {% for error in form.nyeri_tenggorokan.errors %}
-                            <span>{{ error }}</span>
-                        {% endfor %}
-                    </div>
-                {% else %}
-                     {{ form.nyeri_tenggorokan(class="form-control form-control-lg")}}
-                {% endif %}
-            </div>
-
             
-            <div class = "form-group">
-                {{ form.sesak.label(class="form-control-label")}}
-                {% if form.sesak.errors %}
-                    {{ form.sesak(class="form-control form-control-lg is-invalid")}}   
-                    <div class = "invalid-feedback">
-                        {% for error in form.sesak.errors %}
-                            <span>{{ error }}</span>
-                        {% endfor %}
-                    </div>
-                {% else %}
-                     {{ form.sesak(class="form-control form-control-lg")}}
-                {% endif %}
-            </div>
-
-
         </fieldset>
-        <div class = "form-group">
-            {{form.submit_gejala(class = "btn btn-outline-info")}}
-        </div>
+
         
     </form>
    

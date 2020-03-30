@@ -7,56 +7,48 @@
             <legend class = "border-bottom mb-4">Riwayat bepergian</legend>
            
 
-            <div class = "form-group">
-                {{ form.riwayat_jalan.label(class="form-control-label")}}
-                {% if form.riwayat_jalan.errors %}
-                    {{ form.riwayat_jalan(class="form-control form-control-lg is-invalid")}}   
-                    <div class = "invalid-feedback">
-                        {% for error in form.riwayat_jalan.errors %}
-                            <span>{{ error }}</span>
-                        {% endfor %}
-                    </div>
-                {% else %}
-                     {{ form.riwayat_jalan(class="form-control form-control-lg")}}
-                {% endif %}
-            </div>
-
-
-            <div class = "form-group">
-                {{ form.riwayat_kontak.label(class="form-control-label")}}
-                {% if form.riwayat_kontak.errors %}
-                    {{ form.riwayat_kontak(class="form-control form-control-lg is-invalid")}}   
-                    <div class = "invalid-feedback">
-                        {% for error in form.riwayat_kontak.errors %}
-                            <span>{{ error }}</span>
-                        {% endfor %}
-                    </div>
-                {% else %}
-                     {{ form.riwayat_kontak(class="form-control form-control-lg")}}
-                {% endif %}
-            </div>
+            <form name="pasienform" action="" method="post">
+                <div class = "form-group">
+                    <label> Dalam 14-30 hari terakhir, apakah anda bepergian ke kota/negara terjangkit COVID19? </label>
+                    <br>
+                    <input type="radio" id="form_jalan1" name="form_jalan" value="y">
+                    <label for="form_jalan1">Ya</label>
+                    <br>
+                    <input type="radio" id="form_jalan2" name="form_jalan" value="n">
+                    <label for="form_jalan2">Tidak</label>
+        
            
+
+                    <br>
+                    <label> Dalam 14-30 hari terakhir, apakah anda melakukan kontak dengan Pasien Probabel/Konfirmasi? </label>
+                    <br>
+                    <input type="radio" id="form_kontak1" name="form_kontak" value="y">
+                    <label for="form_kontak1">Ya</label>
+                    <br>
+                    <input type="radio" id="form_kontak2" name="form_kontak" value="n">
+                    <label for="form_kontak2">Tidak</label>
+        
+                
+
+
+            
+                    <label> Dalam 14-30 hari terakhir, apakah anda melakukan kontak dengan Pasien Dalam Pengawasan (Y/N)? </label>
+                    <br>
+                    <input type="radio" id="form_kontak_pdp1" name="form_kontak_pdp" value="y">
+                    <label for="form_kontak_pdp1">Ya</label>
+                    <br>
+                    <input type="radio" id="form_kontak_pdp2" name="form_kontak_pdp" value="n">
+                    <label for="form_kontak_pdp2">Tidak</label>
+        
+                </div>
+            </form>
+
             <div class = "form-group">
-                {{ form.riwayat_kontak_pdp.label(class="form-control-label")}}
-                {% if form.riwayat_kontak_pdp.errors %}
-                    {{ form.riwayat_kontak_pdp(class="form-control form-control-lg is-invalid")}}   
-                    <div class = "invalid-feedback">
-                        {% for error in form.riwayat_kontak_pdp.errors %}
-                            <span>{{ error }}</span>
-                        {% endfor %}
-                    </div>
-
-
-                    
-                {% else %}
-                     {{ form.riwayat_kontak_pdp(class="form-control form-control-lg")}}
-                {% endif %}
+                {{form.submit_test(class = "btn btn-outline-info")}}
             </div>
-
+            
         </fieldset>
-        <div class = "form-group">
-            {{form.submit_test(class = "btn btn-outline-info")}}
-        </div>
+
         
     </form>
    

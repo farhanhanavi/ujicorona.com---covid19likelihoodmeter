@@ -45,17 +45,8 @@ class LoginForm (FlaskForm):
     submit = SubmitField ('Masuk')
 
 class ContactHistoryForm (FlaskForm):
-    riwayat_jalan = StringField('Dalam 14-30 hari terakhir, apakah anda bepergian ke kota/negara terjangkit COVID19 (Y/N)?', validators = [DataRequired(message = 'Mohon jawab pertanyaan ini')])
-    riwayat_kontak = StringField('Dalam 14-30 hari terakhir, apakah anda melakukan kontak dengan Pasien Probabel/Konfirmasi (Y/N) ?', validators = [DataRequired(message = 'Mohon jawab pertanyaan ini')])
-    riwayat_kontak_pdp = StringField('Dalam 14-30 hari terakhir, apakah anda melakukan kontak dengan Pasien Dalam Pengawasan (Y/N)?', validators = [DataRequired(message = 'Mohon jawab pertanyaan ini')])
     submit_test = SubmitField ('Lihat hasil')
 
-
 class GejalaForm (FlaskForm):
-    demam = StringField('Apakah anda mengalami demam (Y/N)?', validators = [DataRequired(message = 'Mohon jawab pertanyaan ini')])
-    batuk = StringField('Apakah anda mengalami batuk (Y/N) ?', validators = [DataRequired(message = 'Mohon jawab pertanyaan ini')])
-    pilek = StringField('Apakah anda mengalami pilek (Y/N)', validators = [DataRequired(message = 'Mohon jawab pertanyaan ini')])
-    nyeri_tenggorokan = StringField('Apakah mengalami nyeri tenggorokan (Y/N)?', validators = [DataRequired(message = 'Mohon jawab pertanyaan ini')])
-    sesak = StringField('Apakah mengalami sesak nafas (Y/N)?', validators = [DataRequired(message = 'Mohon jawab pertanyaan ini')])
     submit_gejala = SubmitField ('Lihat hasil')
 

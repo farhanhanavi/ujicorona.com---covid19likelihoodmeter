@@ -22,26 +22,29 @@ def riwayatbepergian():
     if form.validate_on_submit():
         
 
-        if form.riwayat_kontak_pdp.data == 'y':
-            contact_history = ContactHistory(riwayat_jalan = form.riwayat_jalan.data, riwayat_kontak = form.riwayat_kontak.data, riwayat_kontak_pdp = form.riwayat_kontak_pdp.data, contactresult = '3', testcontactuser = current_user)
+        if request.form['form_kontak_pdp'] == 'y':
+            contact_history = ContactHistory(riwayat_jalan = request.form['form_jalan'], riwayat_kontak = request.form['form_kontak'], riwayat_kontak_pdp = request.form['form_kontak_pdp'], contactresult = '3', testcontactuser = current_user)
             db.session.add(contact_history)
             db.session.commit()
             flash(f'Input riwayat bepergian berhasil !', 'success')
             return redirect(url_for('riwayatgejala'))
-        if form.riwayat_kontak.data == 'y':
-            contact_history = ContactHistory(riwayat_jalan = form.riwayat_jalan.data, riwayat_kontak = form.riwayat_kontak.data, riwayat_kontak_pdp = form.riwayat_kontak_pdp.data, contactresult = '2', testcontactuser = current_user)
+        
+        if request.form['form_kontak'] == 'y':
+            contact_history = ContactHistory(riwayat_jalan = request.form['form_jalan'], riwayat_kontak = request.form['form_kontak'], riwayat_kontak_pdp = request.form['form_kontak_pdp'], contactresult = '2', testcontactuser = current_user)
             db.session.add(contact_history)
             db.session.commit()
             flash(f'Input riwayat bepergian berhasil !', 'success')
             return redirect(url_for('riwayatgejala'))
-        if form.riwayat_jalan.data == 'y':
-            contact_history = ContactHistory(riwayat_jalan = form.riwayat_jalan.data, riwayat_kontak = form.riwayat_kontak.data, riwayat_kontak_pdp = form.riwayat_kontak_pdp.data, contactresult = '1', testcontactuser = current_user)
+
+        if request.form['form_jalan'] == 'y':
+            contact_history = ContactHistory(riwayat_jalan = request.form['form_jalan'], riwayat_kontak = request.form['form_kontak'], riwayat_kontak_pdp = request.form['form_kontak_pdp'], contactresult = '1', testcontactuser = current_user)
             db.session.add(contact_history)
             db.session.commit()
             flash(f'Input riwayat bepergian berhasil !', 'success')
             return redirect(url_for('riwayatgejala'))
-        else:
-            contact_history = ContactHistory(riwayat_jalan = form.riwayat_jalan.data, riwayat_kontak = form.riwayat_kontak.data, riwayat_kontak_pdp = form.riwayat_kontak_pdp.data, contactresult = '0', testcontactuser = current_user)
+
+        else: 
+            contact_history = ContactHistory(riwayat_jalan = request.form['form_jalan'], riwayat_kontak = request.form['form_kontak'], riwayat_kontak_pdp = request.form['form_kontak_pdp'], contactresult = '0', testcontactuser = current_user)
             db.session.add(contact_history)
             db.session.commit()
             flash(f'Input riwayat bepergian berhasil !', 'success')
@@ -54,71 +57,70 @@ def riwayatgejala():
     form = GejalaForm()
     if form.validate_on_submit():
 
-        if form.demam.data == 'y' or form.batuk.data == 'y' or form.pilek.data == 'y' or form.nyeri_tenggorokan.data == 'y' or form.sesak.data == 'y':    
-            symptoms = Symptoms(demam = form.demam.data, batuk = form.batuk.data, pilek = form.pilek.data, nyeri_tenggorokan = form.nyeri_tenggorokan.data, sesak = form.sesak.data, symptomsresult = '1', testsymptomsuser = current_user)
-            db.session.add(symptoms)
-            db.session.commit()
+        if request.form['demam'] == 'y' or request.form['batuk'] == 'y' or request.form['pilek'] == 'y' or request.form['nyeri_tenggorokan'] == 'y' or request.form['sesak_nafas'] == 'y':    
+                symptoms = Symptoms(demam = request.form['demam'], batuk = request.form['batuk'], pilek = request.form['pilek'], nyeri_tenggorokan = request.form['nyeri_tenggorokan'], sesak = request.form['sesak_nafas'], symptomsresult = '1', testsymptomsuser = current_user)
+                db.session.add(symptoms)
+                db.session.commit()
 
-            usersymptoms = Symptoms.query.filter_by(id = current_user.id).order_by(Symptoms.symptomsid.desc()).first()
-            usercontact = ContactHistory.query.filter_by(id = current_user.id).order_by(ContactHistory.contact_id.desc()).first()    
+                usersymptoms = Symptoms.query.filter_by(id = current_user.id).order_by(Symptoms.symptomsid.desc()).first()
+                usercontact = ContactHistory.query.filter_by(id = current_user.id).order_by(ContactHistory.contact_id.desc()).first()    
 
-            if usercontact.contactresult == 1 and usersymptoms.symptomsresult == 1:
-                userresult = Categories(id = current_user.id, contact_result = usercontact.contactresult,categories = 'ODP', symptoms_result= usersymptoms.symptomsresult)
-                db.session.add(userresult)
-                db.session.commit()
+                if usercontact.contactresult == 1 and usersymptoms.symptomsresult == 1:
+                    userresult = Categories(id = current_user.id, contact_result = usercontact.contactresult,categories = 'ODP', symptoms_result= usersymptoms.symptomsresult)
+                    db.session.add(userresult)
+                    db.session.commit()
+                    flash(f'Input telah berhasil !', 'success')
+                    return redirect(url_for('profile'))
+                if usercontact.contactresult == 2 and usersymptoms.symptomsresult == 1:
+                    userresult = Categories(id = current_user.id, contact_result = usercontact.contactresult,categories = 'PDP', symptoms_result= usersymptoms.symptomsresult)
+                    db.session.add(userresult)
+                    db.session.commit()
+                    flash(f'Input telah berhasil !', 'success')
+                    return redirect(url_for('profile'))
+                if usercontact.contactresult == 3 and usersymptoms.symptomsresult == 1:
+                    userresult = Categories(id = current_user.id, contact_result = usercontact.contactresult,categories = 'Self Isolation', symptoms_result= usersymptoms.symptomsresult)
+                    db.session.add(userresult)
+                    db.session.commit()
+                    flash(f'Input telah berhasil !', 'success')
+                    return redirect(url_for('profile'))
+                else:
+                    userresult = Categories(id = current_user.id, contact_result = usercontact.contactresult,categories = '0', symptoms_result= usersymptoms.symptomsresult)
+                    db.session.add(userresult)
+                    db.session.commit()
                 flash(f'Input telah berhasil !', 'success')
                 return redirect(url_for('profile'))
-            if usercontact.contactresult == 2 and usersymptoms.symptomsresult == 1:
-                userresult = Categories(id = current_user.id, contact_result = usercontact.contactresult,categories = 'PDP', symptoms_result= usersymptoms.symptomsresult)
-                db.session.add(userresult)
-                db.session.commit()
-                flash(f'Input telah berhasil !', 'success')
-                return redirect(url_for('profile'))
-            if usercontact.contactresult == 3 and usersymptoms.symptomsresult == 1:
-                userresult = Categories(id = current_user.id, contact_result = usercontact.contactresult,categories = 'Self Isolation', symptoms_result= usersymptoms.symptomsresult)
-                db.session.add(userresult)
-                db.session.commit()
-                flash(f'Input telah berhasil !', 'success')
-                return redirect(url_for('profile'))
-            else:
-                userresult = Categories(id = current_user.id, contact_result = usercontact.contactresult,categories = '0', symptoms_result= usersymptoms.symptomsresult)
-                db.session.add(userresult)
-                db.session.commit()
-            flash(f'Input telah berhasil !', 'success')
-            return redirect(url_for('profile'))
         else:
-            symptoms = Symptoms(demam = form.demam.data, batuk = form.batuk.data, pilek = form.pilek.data, nyeri_tenggorokan = form.nyeri_tenggorokan.data, sesak = form.sesak.data, symptomsresult = '0', testsymptomsuser = current_user)
-            db.session.add(symptoms)
-            db.session.commit()
-         
-            usersymptoms = Symptoms.query.filter_by(id = current_user.id).order_by(Symptoms.symptomsid.desc()).first()
-            usercontact = ContactHistory.query.filter_by(id = current_user.id).order_by(ContactHistory.contact_id.desc()).first()     
+                symptoms = Symptoms(demam = request.form['demam'], batuk = request.form['batuk'], pilek = request.form['pilek'], nyeri_tenggorokan = request.form['nyeri_tenggorokan'], sesak = request.form['sesak_nafas'], symptomsresult = '0', testsymptomsuser = current_user)
+                db.session.add(symptoms)
+                db.session.commit()
             
-            if usercontact.contactresult == 1 and usersymptoms.symptomsresult == 0:
-                userresult = Categories(id = current_user.id, contact_result = usercontact.contactresult,categories = 'Self Isolation', symptoms_result= usersymptoms.symptomsresult)
-                db.session.add(userresult)
-                db.session.commit()
-                flash(f'Input telah berhasil !', 'success')
-                return redirect(url_for('profile'))
-            if usercontact.contactresult == 2 and usersymptoms.symptomsresult == 0:
-                userresult = Categories(id = current_user.id, contact_result = usercontact.contactresult,categories = 'KERT', symptoms_result= usersymptoms.symptomsresult)
-                db.session.add(userresult)
-                db.session.commit()
-                flash(f'Input telah berhasil !', 'success')
-                return redirect(url_for('profile'))
-            if usercontact.contactresult == 3 and usersymptoms.symptomsresult == 0:
-                userresult = Categories(id = current_user.id, contact_result = usercontact.contactresult,categories = 'KERR', symptoms_result= usersymptoms.symptomsresult)
-                db.session.add(userresult)
-                db.session.commit()
-                flash(f'Input telah berhasil !', 'success')
-                return redirect(url_for('profile'))  
-            else:
-                userresult = Categories(id = current_user.id, contact_result = usercontact.contactresult,categories = 'sehat', symptoms_result= usersymptoms.symptomsresult)
-                db.session.add(userresult)
-                db.session.commit()
-                       
-        flash(f'Input telah berhasil !', 'success')
-        return redirect(url_for('profile'))  
+                usersymptoms = Symptoms.query.filter_by(id = current_user.id).order_by(Symptoms.symptomsid.desc()).first()
+                usercontact = ContactHistory.query.filter_by(id = current_user.id).order_by(ContactHistory.contact_id.desc()).first()     
+                
+                if usercontact.contactresult == 1 and usersymptoms.symptomsresult == 0:
+                    userresult = Categories(id = current_user.id, contact_result = usercontact.contactresult,categories = 'Self Isolation', symptoms_result= usersymptoms.symptomsresult)
+                    db.session.add(userresult)
+                    db.session.commit()
+                    flash(f'Input telah berhasil !', 'success')
+                    return redirect(url_for('profile'))
+                if usercontact.contactresult == 2 and usersymptoms.symptomsresult == 0:
+                    userresult = Categories(id = current_user.id, contact_result = usercontact.contactresult,categories = 'KERT', symptoms_result= usersymptoms.symptomsresult)
+                    db.session.add(userresult)
+                    db.session.commit()
+                    flash(f'Input telah berhasil !', 'success')
+                    return redirect(url_for('profile'))
+                if usercontact.contactresult == 3 and usersymptoms.symptomsresult == 0:
+                    userresult = Categories(id = current_user.id, contact_result = usercontact.contactresult,categories = 'KERR', symptoms_result= usersymptoms.symptomsresult)
+                    db.session.add(userresult)
+                    db.session.commit()
+                    flash(f'Input telah berhasil !', 'success')
+                    return redirect(url_for('profile'))  
+                else:
+                    userresult = Categories(id = current_user.id, contact_result = usercontact.contactresult,categories = 'sehat', symptoms_result= usersymptoms.symptomsresult)
+                    db.session.add(userresult)
+                    db.session.commit()
+                    flash(f'Input telah berhasil !', 'success')
+                    return redirect(url_for('profile'))  
     return render_template('riwayatgejala.html', title = 'Cek resiko infeksi online', form = form)
 
 
@@ -163,8 +165,3 @@ def profile():
    return render_template('profile.html', title = ' Profil', posts=post)
 
 
-@app.route('/typeform')
-@login_required
-def typeform():
-   
-   return render_template('typeform.html', title = ' Profil')
