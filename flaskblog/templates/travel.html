@@ -1,0 +1,60 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class = "content-section">
+    <form method = "POST" action = "">
+        {{ form.hidden_tag()}}
+        <fieldset class = "form-group">
+            <legend class = "border-bottom mb-4">Kondisi Penyerta</legend>
+           
+
+            <form name="pasienform" action="" method="post">
+                <div class = "form-group">
+                    <label> Apakah anda bepergian ke pasar hewan? </label>
+                    <br>
+                    <input type="radio" id="pasarhewan1" name="pasarhewan" value="y">
+                    <label for="pasarhewan1">Ya</label>
+                    <br>
+                    <input type="radio" id="pasarhewan2" name="pasarhewan" value="n">
+                    <label for="pasarhewan2">Tidak</label>
+                </div>
+
+
+                <div class = "form-group">
+                        <label> Apakah anda berkunjung ke sarana fasilitas kesehatan? </label>
+                        <br>
+                        <input type="radio" id="kunjungansarana1" name="kunjungansarana" value="y">
+                        <label for="kunjungansarana1">Ya</label>
+                        <br>
+                        <input type="radio" id="kunjungansarana2" name="kunjungansarana" value="n">
+                        <label for="kunjungansarana2">Tidak</label>
+                </div>
+
+                
+
+
+                <div class = "form-group">
+                            <label> Apakah Anda berkunjung ke negara atau kota selain wilayah tempat tinggal Anda?? </label>
+                            <br>
+                            <input type="radio" id="kunjungannegara1" name="kunjungannegara" value="y">
+                            <label for="kunjungannegara1">Ya</label>
+                            <br>
+                            <input type="radio" id="kunjungannegara2" name="kunjungannegara" value="n">
+                            <label for="kunjungannegara2">Tidak</label>    
+                </div>
+            
+            </form>
+
+            <div class = "form-group">
+                {{form.submitaja(class = "btn btn-outline-info")}}
+            </div>
+            
+        </fieldset>
+
+        
+    </form>
+   
+</div>
+    
+{% endblock %}
+
+

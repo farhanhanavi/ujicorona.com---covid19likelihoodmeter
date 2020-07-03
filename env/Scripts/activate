@@ -46,7 +46,7 @@ deactivate () {
 # unset irrelevant variables
 deactivate nondestructive
 
-VIRTUAL_ENV='C:\Users\Farhan\Documents\VisualCode JOSSS\env'
+VIRTUAL_ENV='C:\Users\Farhan\Documents\GitHub\likelihoodmeter\env'
 export VIRTUAL_ENV
 
 _OLD_VIRTUAL_PATH="$PATH"

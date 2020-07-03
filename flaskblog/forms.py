@@ -14,7 +14,7 @@ class RegistrationForm (FlaskForm):
     nomor_hp = StringField('Nomor Handphone', validators = [DataRequired(message = 'Masukan nomor handphone anda disini'), Regexp('^[0-9]+$', message="Nomor HP harus angka")])
     umur = StringField('Umur', validators = [DataRequired(message = 'Masukan umur anda disini'), Regexp('^[0-9]+$', message="Umur harus angka"),Length(min = 0, max = 2, message = 'Masukan nomor umur anda dengan benar') ])
     
-    alamat = StringField('Alamat tempat tinggal', validators=[DataRequired(message = 'Masukan alamat anda disini')])
+    alamat = StringField('Wilayah kota / Kabupaten', validators=[DataRequired(message = 'Masukan wilayah kota/kabupaten anda disini')])
     email = StringField('email', validators = [DataRequired(message = 'Masukan email anda disini'), Email(message = 'Masukan email anda dengan benar')])
     password = PasswordField('Password', validators = [DataRequired(message = 'Masukan password anda disini')])
     confirmpassword = PasswordField('Confirm Password', validators = [DataRequired(), EqualTo('password', message = 'Masukan kembali password dengan benar')])
@@ -39,7 +39,7 @@ class RegistrationForm (FlaskForm):
                 raise ValidationError('That username is taken. Please choose a different one.')
 
 class LoginForm (FlaskForm):
-    email = StringField('email', validators = [DataRequired(message = 'Masukan email anda disini'), Email(message = 'Masukan email anda dengan benar')])
+    email = StringField('Email', validators = [DataRequired(message = 'Masukan email anda disini'), Email(message = 'Masukan email anda dengan benar')])
     password = PasswordField('Password', validators = [DataRequired(message = 'Masukan password anda disini')])
     remember = BooleanField('Remember me')
     submit = SubmitField ('Masuk')
@@ -49,4 +49,10 @@ class ContactHistoryForm (FlaskForm):
 
 class GejalaForm (FlaskForm):
     submit_gejala = SubmitField ('Lihat hasil')
+
+class KondisiPenyertaForm (FlaskForm):
+    submitaja = SubmitField ('Lihat hasil')
+
+class TravelForm (FlaskForm):
+    submitaja = SubmitField ('Lihat hasil')
 

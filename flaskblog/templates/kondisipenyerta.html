@@ -1,0 +1,68 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class = "content-section">
+    <form method = "POST" action = "">
+        {{ form.hidden_tag()}}
+        <fieldset class = "form-group">
+            <legend class = "border-bottom mb-4">Kondisi Penyerta</legend>
+           
+
+            <form name="pasienform" action="" method="post">
+                <div class = "form-group">
+                    <label> Apakah anda sedang hamil? </label>
+                    <br>
+                    <input type="radio" id="hamil1" name="hamil" value="y">
+                    <label for="demam1">Ya</label>
+                    <br>
+                    <input type="radio" id="hamil2" name="hamil" value="n">
+                    <label for="hamil">Tidak</label>
+
+
+                        <br>
+                        <br>
+                        <label> Apakah Anda pernah didiagnosis memiliki riwayat penyakit sebagai berikut ? <br>(boleh memilih lebih dari satu) </label>
+                        <br>
+                        <br>
+                        <input type="radio" id="kondisipenyerta1" name="kondisipenyerta" value="y">
+                        <label for="kondisipenyerta1">Diabetes mellitus/kencing manis/sakit gula</label>
+                        <br>
+                        <input type="radio" id="kondisipenyerta2" name="kondisipenyerta" value="y">
+                        <label for="kondisipenyerta2">Penyakit jantung</label>
+                        <br>
+                        <input type="radio" id="kondisipenyerta3" name="kondisipenyerta" value="y">
+                        <label for="kondisipenyerta3">Hipertensi/tekanan darah tinggi</label>
+                        <br>
+                        <input type="radio" id="kondisipenyerta4" name="kondisipenyerta" value="y">
+                        <label for="kondisipenyerta4"> Penyakit kanker/keganasan</label>
+                        <br>
+                        <input type="radio" id="kondisipenyerta5" name="kondisipenyerta" value="y">
+                        <label for="kondisipenyerta5"> Gangguan sistem imun</label>
+                        <br>
+                        <input type="radio" id="kondisipenyerta6" name="kondisipenyerta" value="y">
+                        <label for="kondisipenyerta6"> Gagal ginjal kronik</label>
+                        <br>
+                        <input type="radio" id="kondisipenyerta7" name="kondisipenyerta" value="y">
+                        <label for="kondisipenyerta7"> Gangguan hati</label>
+                        <br>
+                        <input type="radio" id="kondisipenyerta8" name="kondisipenyerta" value="y">
+                        <label for="kondisipenyerta8"> Penyakit paru obstruktif kronis</label>
+                    </div>
+
+                    <div class = "form-group">
+                        {{form.submitaja(class = "btn btn-outline-info")}}
+                    </div>
+                </div>
+            </form>
+
+           
+            
+        </fieldset>
+
+        
+    </form>
+   
+</div>
+    
+{% endblock %}
+
+

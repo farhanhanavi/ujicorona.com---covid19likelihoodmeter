@@ -1,6 +1,6 @@
 from flask import render_template, url_for, flash, redirect, request
 from flaskblog.__innit__ import app, db, bcrypt
-from flaskblog.forms import RegistrationForm, LoginForm, ContactHistoryForm, GejalaForm
+from flaskblog.forms import RegistrationForm, LoginForm, ContactHistoryForm, GejalaForm, KondisiPenyertaForm, TravelForm
 from flaskblog.models import *
 from flask_login import login_user, logout_user, current_user, login_required
 
@@ -59,6 +59,7 @@ def riwayatgejala():
 
         if request.form['demam'] == 'y' or request.form['batuk'] == 'y' or request.form['pilek'] == 'y' or request.form['nyeri_tenggorokan'] == 'y' or request.form['sesak_nafas'] == 'y':    
                 symptoms = Symptoms(demam = request.form['demam'], batuk = request.form['batuk'], pilek = request.form['pilek'], nyeri_tenggorokan = request.form['nyeri_tenggorokan'], sesak = request.form['sesak_nafas'], symptomsresult = '1', testsymptomsuser = current_user)
+                #tidur = request.form['tidur']#,  , menggigil = request.form['menggigil'], sakit_kepala = request.form['sakitkepala'], kelelahan = request.form['kelelahan'], nyeri_otot = request.form['nyeri_otot'], mual = request.form['mual'], nyeri_perut = request.form['nyeri_perut'], diare = request.form['diare'], symptomsresult = '1', testsymptomsuser = current_user)
                 db.session.add(symptoms)
                 db.session.commit()
 
@@ -91,6 +92,7 @@ def riwayatgejala():
                 return redirect(url_for('profile'))
         else:
                 symptoms = Symptoms(demam = request.form['demam'], batuk = request.form['batuk'], pilek = request.form['pilek'], nyeri_tenggorokan = request.form['nyeri_tenggorokan'], sesak = request.form['sesak_nafas'], symptomsresult = '0', testsymptomsuser = current_user)
+                #tidur = request.form['tidur']#,  , menggigil = request.form['menggigil'], sakit_kepala = request.form['sakitkepala'], kelelahan = request.form['kelelahan'], nyeri_otot = request.form['nyeri_otot'], mual = request.form['mual'], nyeri_perut = request.form['nyeri_perut'], diare = request.form['diare'], symptomsresult = '1', testsymptomsuser = current_user)
                 db.session.add(symptoms)
                 db.session.commit()
             
@@ -160,8 +162,22 @@ def logout():
 @app.route('/profile')
 @login_required
 def profile():
-   
    post = Categories.query.filter_by(id = current_user.id)
    return render_template('profile.html', title = ' Profil', posts=post)
+
+@app.route('/kondisipenyerta', methods=['GET', 'POST'] )
+@login_required
+def kondisi_penyerta():
+   form = KondisiPenyertaForm()
+  
+   
+   return render_template('kondisipenyerta.html', title = ' Profil', form=form)
+
+@app.route('/travel')
+@login_required
+def travel():
+   form = TravelForm()
+   
+   return render_template('travel.html', title = ' Profil', form=form)
 
 

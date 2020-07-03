@@ -20,6 +20,7 @@ class User(db.Model, UserMixin):
     kontak = db.relationship('ContactHistory', backref = 'testcontactuser', lazy = True)
     gejala = db.relationship('Symptoms', backref = 'testsymptomsuser', lazy = True)
     categories = db.relationship('Categories', backref = 'testcategoriesuser', lazy = True)
+    kondisipenyerta = db.relationship('KondisiPenyerta', backref = 'kondisipenyertauser', lazy = True)
     def __repr__(self):
         return f"user('{self.ktp}', '{self.nama}', '{self.email}', '{self.password}')"
 
@@ -39,18 +40,40 @@ class ContactHistory(db.Model):
 
 class Symptoms(db.Model):
     symptomsid = db.Column(db.Integer, nullable= False, primary_key = True) 
-    id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable = False)   
-    demam = db.Column(db.String(10), nullable = False)
-    batuk = db.Column(db.String(10), nullable = False)
-    pilek = db.Column(db.String(10), nullable = False)
-    nyeri_tenggorokan = db.Column(db.String(10), nullable = False)
+    id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable = False)
     sesak = db.Column(db.String(10), nullable = False)
+    batuk = db.Column(db.String(10), nullable = False)
+    pilek = db.Column(db.String(10), nullable = False)   
+    demam = db.Column(db.String(10), nullable = False)
+    #tidur = db.Column(db.String(10), nullable = False)
+    nyeri_tenggorokan = db.Column(db.String(10), nullable = False)
+    #menggigil = batuk = db.Column(db.String(10), nullable = False)
+    #sakit_kepala = db.Column(db.String(10), nullable = False)
+    #kelelahan = db.Column(db.String(10), nullable = False)
+    #nyeri_otot = db.Column(db.String(10), nullable = False)
+    #mual = db.Column(db.String(10), nullable = False)
+    #nyeri_perut = db.Column(db.String(10), nullable = False)
+    #diare = db.Column(db.String(10), nullable = False)
     symptomsresult = db.Column(db.Integer)
-    
-				
     
     def __repr__(self):
         return f"result('{self.demam}', '{self.batuk}', '{self.pilek}',''{self.nyeri_tenggorokan}','{self.sesak}', '{self.symptomsresult}')"
+
+class KondisiPenyerta(db.Model):
+    kondisipenyerta_id = db.Column(db.Integer, nullable= False, primary_key = True) 
+    id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable = False)
+    hamil = db.Column(db.String(10), nullable = False)
+    diabetes = db.Column(db.String(10), nullable = False)
+    penyakit_jantung = db.Column(db.String(10), nullable = False)
+    hipertensi = db.Column(db.String(10), nullable = False)
+    penyakit_keganasan = db.Column(db.String(10), nullable = False)
+    gangguan_imun = db.Column(db.String(10), nullable = False)
+    gagal_ginjal = db.Column(db.String(10), nullable = False)
+    gangguan_hati = db.Column(db.String(10), nullable = False)
+    penyakit_paru = db.Column(db.String(10), nullable = False)
+    
+    def __repr__(self):
+        return f"result('{self.hamil}', '{self.diabetes}', '{self.penyakit_jantung}',''{self.hipertensi}','{self.penyakit_keganasan}', '{self.gangguan_imun}', '{self.gagal_ginjal}', '{self.gangguan_hati}', '{self.penyakit_paru}')"
 
 class Categories(db.Model):
     response_id = db.Column(db.Integer, nullable = False, primary_key = True)

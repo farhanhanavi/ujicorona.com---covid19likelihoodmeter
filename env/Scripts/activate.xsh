@@ -28,7 +28,7 @@ def _deactivate(args):
 _deactivate(["nondestructive"])
 aliases["deactivate"] = _deactivate
 
-$VIRTUAL_ENV = r"C:\Users\Farhan\Documents\VisualCode JOSSS\env"
+$VIRTUAL_ENV = r"C:\Users\Farhan\Documents\GitHub\likelihoodmeter\env"
 
 $_OLD_VIRTUAL_PATH = $PATH
 $PATH = $PATH[:]
